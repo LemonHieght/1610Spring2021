@@ -12,6 +12,13 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="BeginnerScripting" t="Include">
+            <e p="BasicSyn.cs" t="Include" />
+            <e p="ColorChanger.cs" t="Include" />
+            <e p="If.cs" t="Include" />
+            <e p="Loop.cs" t="Include" />
+            <e p="VarAndFun.cs" t="Include" />
+          </e>
           <e p="Experiments" t="Include">
             <e p="Skill.cs" t="Include" />
             <e p="SkillButton.cs" t="Include" />

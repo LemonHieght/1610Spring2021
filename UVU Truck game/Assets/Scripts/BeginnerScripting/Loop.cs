@@ -16,7 +16,6 @@ public class Loop : MonoBehaviour
             cupsInSink--;
             emptySink = true;
         }
-
         do
         {
             print("All Done");

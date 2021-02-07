@@ -13,10 +13,18 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BeginnerScripting" t="Include">
+            <e p="ActiveState.cs" t="Include" />
+            <e p="AnotherScript.cs" t="Include" />
+            <e p="AwakeStart.cs" t="Include" />
             <e p="BasicSyn.cs" t="Include" />
             <e p="ColorChanger.cs" t="Include" />
+            <e p="Destroy.cs" t="Include" />
+            <e p="ForEach.cs" t="Include" />
             <e p="If.cs" t="Include" />
+            <e p="LookAt.cs" t="Include" />
             <e p="Loop.cs" t="Include" />
+            <e p="OnOffComponents.cs" t="Include" />
+            <e p="ScopeAndMod.cs" t="Include" />
             <e p="VarAndFun.cs" t="Include" />
           </e>
           <e p="Experiments" t="Include">

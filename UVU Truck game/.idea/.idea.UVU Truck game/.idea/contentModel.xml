@@ -15,6 +15,7 @@
           <e p="BeginnerScripting" t="Include">
             <e p="ActiveState.cs" t="Include" />
             <e p="AnotherScript.cs" t="Include" />
+            <e p="Array.cs" t="Include" />
             <e p="AwakeStart.cs" t="Include" />
             <e p="BasicSyn.cs" t="Include" />
             <e p="ColorChanger.cs" t="Include" />

@@ -8,16 +8,16 @@ public class ScopeAndMod : MonoBehaviour
 
     private int beta = 0;
 
-    private int charlie = 5;
+    // private int charlie = 5;
     
-    private AnotherScript myOtherClass;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        alpha = 10;
-        myOtherClass.FruitMachine(alpha,myOtherClass.apples);
-    }
+    // private AnotherScript myOtherClass;
+    //
+    // // Start is called before the first frame update
+    // void Start()
+    // {
+    //     alpha = 10;
+    //     myOtherClass.FruitMachine(alpha,myOtherClass.apples);
+    // }
 
     void Example(int pens, int crayons)
     {

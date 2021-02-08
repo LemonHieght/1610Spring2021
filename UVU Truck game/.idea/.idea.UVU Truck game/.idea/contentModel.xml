@@ -28,6 +28,9 @@
             <e p="ScopeAndMod.cs" t="Include" />
             <e p="VarAndFun.cs" t="Include" />
           </e>
+          <e p="CreateWithCode" t="Include">
+            <e p="PlayerController.cs" t="Include" />
+          </e>
           <e p="Experiments" t="Include">
             <e p="Skill.cs" t="Include" />
             <e p="SkillButton.cs" t="Include" />

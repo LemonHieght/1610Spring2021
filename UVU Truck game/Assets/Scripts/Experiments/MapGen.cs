@@ -1,0 +1,18 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MapGen : MonoBehaviour
+{
+    public int mapWith;
+    public int mapHeight;
+    public float noiseScale;
+
+    public void GenerateMap()
+    {
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWith, mapHeight, noiseScale);
+
+        MapDisplay display = FindObjectOfType<MapDisplay>();
+        display.DrawNoiseMap(noiseMap);
+    }
+}

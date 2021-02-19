@@ -7,6 +7,8 @@ public class MapGen : MonoBehaviour
     public int mapWith;
     public int mapHeight;
     public float noiseScale;
+    public bool autoUpdate;
+    
 
     public void GenerateMap()
     {

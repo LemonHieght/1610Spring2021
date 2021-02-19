@@ -42,6 +42,7 @@
           <e p="Experiments" t="Include">
             <e p="MapDisplay.cs" t="Include" />
             <e p="MapGen.cs" t="Include" />
+            <e p="MapGenEditor.cs" t="Include" />
             <e p="Noise.cs" t="Include" />
             <e p="Skill.cs" t="Include" />
             <e p="SkillButton.cs" t="Include" />

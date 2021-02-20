@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(MapGen))]
 public class MapGenEditor : Editor
 {
+//Sebastian Lague
     public override void OnInspectorGUI()
     {
         MapGen mapGen = (MapGen) target;

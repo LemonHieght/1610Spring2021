@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class Noise 
 {
+    //Sebastian Lague
     public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight,int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offSet)
     {
        float[,] noiseMap = new float[mapWidth, mapHeight];

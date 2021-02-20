@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class MapGen : MonoBehaviour
 {
-    public enum DrawMode {NoiseMap, ColorMap};
+    //Sebastian Lague
+    public enum DrawMode {NoiseMap, ColorMap, Mesh};
 
     public DrawMode drawMode;
 
@@ -52,6 +53,10 @@ public class MapGen : MonoBehaviour
         else if (drawMode == DrawMode.ColorMap)
         {
             display.DrawTexture(TextureGen.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+        }
+        else if(drawMode == DrawMode.Mesh)
+        {
+            display.DrawMesh(MeshGen.GenerateTerrainMesh(noiseMap), TextureGen.TextureFromColorMap(colorMap, mapWidth, mapHeight));;
         }
     }
 

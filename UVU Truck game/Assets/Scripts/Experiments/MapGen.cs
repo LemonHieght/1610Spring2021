@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.AssetImporters;
 using UnityEngine;
 
 public class MapGen : MonoBehaviour
 {
+    public enum DrawMode {NoiseMap, ColorMap};
+
+    public DrawMode drawMode;
+
     public int mapWidth;
     public int mapHeight;
     public float noiseScale;
@@ -16,12 +21,38 @@ public class MapGen : MonoBehaviour
     
     public bool autoUpdate;
 
+    public TerrainType[] terrain;
+
     public void GenerateMap()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offSet);
 
+        Color[] colorMap = new Color[mapWidth * mapHeight];
+        for (int y = 0; y < mapHeight; y++)
+        {
+            for (int x = 0; x < mapWidth; x++)
+            {
+                float currentHeight = noiseMap[x, y];
+                for (int i = 0; i < terrain.Length; i++)
+                {
+                    if (currentHeight <= terrain [i].heightValue)
+                    {
+                        colorMap[y * mapWidth + x] = terrain[i].color;
+                        break;
+                    }
+                }
+            }
+        }
+        
         MapDisplay display = FindObjectOfType<MapDisplay>();
-        display.DrawNoiseMap(noiseMap);
+        if (drawMode == DrawMode.NoiseMap)
+        {
+            display.DrawTexture(TextureGen.TextureFromHeightMap(noiseMap));
+        }
+        else if (drawMode == DrawMode.ColorMap)
+        {
+            display.DrawTexture(TextureGen.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+        }
     }
 
     void OnValidate()
@@ -52,3 +83,13 @@ public class MapGen : MonoBehaviour
         }
     }
 }
+
+[System.Serializable]
+public struct TerrainType
+{
+    public string name;
+    public float heightValue;
+    public Color color;
+    
+}
+

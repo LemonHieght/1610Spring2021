@@ -451,12 +451,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0e86d2b3a833b4f91c482bc5767883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWith: 100
+  mapWidth: 100
   mapHeight: 100
-  noiseScale: 23.07
-  octaves: 10
-  persistance: 0.03
-  lacunarity: 2.29
+  noiseScale: 8.53
+  octaves: 2
+  persistance: 1
+  lacunarity: 2.62
+  seed: 0
+  offSet: {x: 5.34, y: -14.77}
   autoUpdate: 1
 --- !u!4 &1237974260
 Transform:

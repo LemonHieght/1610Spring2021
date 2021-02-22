@@ -10,7 +10,7 @@ public class MapGen : MonoBehaviour
 
     public DrawMode drawMode;
 
-     private const int mapSize = 241;
+     public const int mapSize = 241;
      [Range(0,6)]
      public int levelOfDetail;
      public float noiseScale;

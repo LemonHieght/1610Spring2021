@@ -28,8 +28,8 @@ public class Endlessterrian : MonoBehaviour
 
     void UpdateVisibleChunks()
     {
-        int currentChunkCoordX = Mathf.RoundToInt(viewer.position.x / chunkSize);
-        int currentChunkCoordY = Mathf.RoundToInt(viewer.position.y / chunkSize);
+        int currentChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
+        int currentChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
 
         for (int yOffset = -chunkVisibleInViewDst; yOffset <= chunkVisibleInViewDst; yOffset++)
         {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Endlessterrian : MonoBehaviour
 {
-    public const float maxViewDst = 300;
+    public const float maxViewDst = 450;
     public Transform viewer;
 
     public static Vector2 viewerPosition;
@@ -13,6 +13,7 @@ public class Endlessterrian : MonoBehaviour
     private int chunkVisibleInViewDst;
 
     private Dictionary<Vector2, TerrainChunk> terrainChunksDictionary = new Dictionary<Vector2, TerrainChunk>();
+    List<TerrainChunk> _terrainChunksVisibleLast = new List<TerrainChunk>();
 
     void Start()
     {
@@ -25,9 +26,15 @@ public class Endlessterrian : MonoBehaviour
         viewerPosition = new Vector2(viewer.position.x, viewer.position.z);
         UpdateVisibleChunks();
     }
-
+    
     void UpdateVisibleChunks()
     {
+        for (int i = 0; i < _terrainChunksVisibleLast.Count; i++)
+        {
+            _terrainChunksVisibleLast [i].SetVisible(false);
+        }
+        _terrainChunksVisibleLast.Clear();
+        
         int currentChunkCoordX = Mathf.RoundToInt(viewerPosition.x / chunkSize);
         int currentChunkCoordY = Mathf.RoundToInt(viewerPosition.y / chunkSize);
 
@@ -40,10 +47,14 @@ public class Endlessterrian : MonoBehaviour
                 if (terrainChunksDictionary.ContainsKey(viewChunkCoord))
                 {
                     terrainChunksDictionary[viewChunkCoord].UpdateTerrainChunk();
+                    if (terrainChunksDictionary [viewChunkCoord].IsVisible())
+                    {
+                        _terrainChunksVisibleLast.Add(terrainChunksDictionary [viewChunkCoord]);
+                    }
                 }
                 else
                 {
-                    terrainChunksDictionary.Add(viewChunkCoord, new TerrainChunk(viewChunkCoord, chunkSize));
+                    terrainChunksDictionary.Add(viewChunkCoord, new TerrainChunk(viewChunkCoord, chunkSize, transform));
                 }
             }
         }
@@ -55,7 +66,7 @@ public class Endlessterrian : MonoBehaviour
         private Vector2 position;
         private Bounds bounds;
         
-        public TerrainChunk(Vector2 coord, int size)
+        public TerrainChunk(Vector2 coord, int size, Transform parent)
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one*size);
@@ -63,6 +74,7 @@ public class Endlessterrian : MonoBehaviour
             meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
             meshObject.transform.position = positionV3;
             meshObject.transform.localScale = Vector3.one * size / 10f;
+            meshObject.transform.parent = parent;
             SetVisible(false);
         }
 
@@ -76,6 +88,11 @@ public class Endlessterrian : MonoBehaviour
         public void SetVisible(bool visible)
         {
             meshObject.SetActive(visible);
+        }
+
+        public bool IsVisible()
+        {
+            return meshObject.activeSelf;
         }
     }
 }

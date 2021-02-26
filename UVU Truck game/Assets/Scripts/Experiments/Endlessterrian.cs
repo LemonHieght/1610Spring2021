@@ -84,7 +84,6 @@ public class Endlessterrian : MonoBehaviour
             meshFilter = meshObject.AddComponent<MeshFilter>();
             meshRenderer.material = material;
             
-            meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
             meshObject.transform.position = positionV3;
             // meshObject.transform.localScale = Vector3.one * size / 10f;
             meshObject.transform.parent = parent;

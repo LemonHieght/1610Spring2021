@@ -4,6 +4,7 @@ using UnityEditor.Experimental.AssetImporters;
 using UnityEngine;
 using System;
 using System.Threading;
+using System.Collections.Generic;
 
 public class MapGen : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class MapGen : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] terrain;
+    
+    Queue<MapThreadInfo<MapData>> mapDataThreadQueue = new Queue<MapThreadInfo<MapData>>();
+    Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
     public void DrawMapEdit()
     {
@@ -41,22 +45,66 @@ public class MapGen : MonoBehaviour
         {
             display.DrawTexture(TextureGen.TextureFromColorMap(mapData.colorMap, mapSize, mapSize));
         }
-        else if(drawMode == DrawMode.Mesh)
+        else if (drawMode == DrawMode.Mesh)
         {
-            display.DrawMesh(MeshGen.GenerateTerrainMesh(mapData.heightMap, meshHeightMult, meshHeightCurve, levelOfDetail), TextureGen.TextureFromColorMap(mapData.colorMap, mapSize, mapSize));;
+            display.DrawMesh(
+                MeshGen.GenerateTerrainMesh(mapData.heightMap, meshHeightMult, meshHeightCurve, levelOfDetail),
+                TextureGen.TextureFromColorMap(mapData.colorMap, mapSize, mapSize));
+        }
+    }
+
+    public void RequestMapData(Action<MapData> callback)
+    {
+        ThreadStart threadStart = delegate { MapDataThread(callback); };
+        
+        new Thread(threadStart).Start();
+    }
+
+    void MapDataThread(Action<MapData> callback)
+    {
+        MapData mapData = GenerateMapData();
+        lock (mapDataThreadQueue)
+        {
+            mapDataThreadQueue.Enqueue(new MapThreadInfo<MapData>(callback, mapData));
+        }
+    }
+
+    public void RequestMeshData(MapData mapData, Action<MeshData> callback)
+    {
+        ThreadStart threadStart = delegate { MeshDataThread(mapData, callback); };
+        new Thread(threadStart).Start();
+        
+    }
+
+    void MeshDataThread(MapData mapData, Action<MeshData> callback)
+    {
+        MeshData meshData = MeshGen.GenerateTerrainMesh(mapData.heightMap, meshHeightMult, meshHeightCurve, levelOfDetail);
+        lock (meshDataThreadInfoQueue)
+        {
+            meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
+        }
+    }
+
+    void Update()
+    {
+        if (mapDataThreadQueue.Count > 0)
+        {
+            for (int i = 0; i < mapDataThreadQueue.Count; i++)
+            {
+                MapThreadInfo<MapData> threadInfo = mapDataThreadQueue.Dequeue();
+                threadInfo.callback(threadInfo.parmeter);
+            }
         }
 
-        public void RequestMapData(Action<MapData> callback)
+        if (meshDataThreadInfoQueue.Count > 0)
         {
-            ThreadStart threadStart = delegate { MapDataThread(callback); };
-            
-            new Thread(threadStart).Start();
+            for (int i = 0; i < meshDataThreadInfoQueue.Count; i++)
+            {
+                MapThreadInfo<MeshData> threadInfo = meshDataThreadInfoQueue.Dequeue();
+                threadInfo.callback(threadInfo.parmeter);
+            }
         }
-
-        void MapDataThread(Action<MapData> callback)
-        {
-            MapData mapData = GenerateMapData();
-        }
+    }
 
     MapData GenerateMapData()
     {
@@ -99,15 +147,16 @@ public class MapGen : MonoBehaviour
             noiseScale = 0;
         }
     }
+
     struct MapThreadInfo<T>
     {
-        public Action<T> callback;
-        public T parameter;
+        public readonly Action<T> callback;
+        public readonly T parmeter;
 
-        public MapThreadInfo(Action<T> callback, T parameter)
+        public MapThreadInfo(Action<T> callback, T parmeter)
         {
             this.callback = callback;
-            this.parameter = parameter;
+            this.parmeter = parmeter;
         }
     }
 }
@@ -123,8 +172,8 @@ public struct TerrainType
 
 public struct MapData
 {
-    public float[,] heightMap;
-    public Color[] colorMap;
+    public readonly float[,] heightMap;
+    public readonly Color[] colorMap;
 
     public MapData(float[,] heightMap, Color[] colorMap)
     {

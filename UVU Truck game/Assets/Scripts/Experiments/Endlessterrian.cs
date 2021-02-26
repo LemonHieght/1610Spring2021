@@ -7,7 +7,9 @@ public class Endlessterrian : MonoBehaviour
 {
     public const float maxViewDst = 450;
     public Transform viewer;
+    public Material mapMaterial;
 
+    private static MapGen mapGenerator;
     public static Vector2 viewerPosition;
     private int chunkSize;
     private int chunkVisibleInViewDst;
@@ -17,6 +19,7 @@ public class Endlessterrian : MonoBehaviour
 
     void Start()
     {
+        mapGenerator = FindObjectOfType<MapGen>();
         chunkSize = MapGen.mapSize - 1;
         chunkVisibleInViewDst = Mathf.RoundToInt(maxViewDst/chunkSize);
     }
@@ -54,7 +57,7 @@ public class Endlessterrian : MonoBehaviour
                 }
                 else
                 {
-                    terrainChunksDictionary.Add(viewChunkCoord, new TerrainChunk(viewChunkCoord, chunkSize, transform));
+                    terrainChunksDictionary.Add(viewChunkCoord, new TerrainChunk(viewChunkCoord, chunkSize, transform, mapMaterial));
                 }
             }
         }
@@ -65,18 +68,43 @@ public class Endlessterrian : MonoBehaviour
         private GameObject meshObject;
         private Vector2 position;
         private Bounds bounds;
+
+        private MapData mapData;
+        private MeshRenderer meshRenderer;
+        private MeshFilter meshFilter;
         
-        public TerrainChunk(Vector2 coord, int size, Transform parent)
+        public TerrainChunk(Vector2 coord, int size, Transform parent, Material material)
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one*size);
             Vector3 positionV3 = new Vector3(position.x,0,position.y);
+            
+            meshObject = new GameObject("terrian Chunk");
+            meshRenderer = meshObject.AddComponent<MeshRenderer>();
+            meshFilter = meshObject.AddComponent<MeshFilter>();
+            meshRenderer.material = material;
+            
             meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
             meshObject.transform.position = positionV3;
-            meshObject.transform.localScale = Vector3.one * size / 10f;
+            // meshObject.transform.localScale = Vector3.one * size / 10f;
             meshObject.transform.parent = parent;
             SetVisible(false);
+
+            mapGenerator.RequestMapData(OnMapDataReceive);
+
         }
+
+        void OnMapDataReceive(MapData mapData)
+        {
+            mapGenerator.RequestMeshData(mapData, MeshDataReceive);
+            
+        }
+
+        private void MeshDataReceive(MeshData meshData)
+        {
+            meshFilter.mesh = meshData.CreateMesh();
+        }
+        
 
         public void UpdateTerrainChunk()
         {

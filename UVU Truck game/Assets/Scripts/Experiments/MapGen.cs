@@ -12,9 +12,11 @@ public class MapGen : MonoBehaviour
     //Sebastian Lague
     public enum DrawMode {NoiseMap, ColorMap, Mesh};
 
-    public DrawMode drawMode;
+    public Noise.NormalizeMode normalizeMode;
 
-     public const int mapSize = 241;
+    public DrawMode drawMode;
+    
+    public const int mapSize = 241;
      [FormerlySerializedAs("levelOfDetail")] [Range(0,6)]
      public int editorLevelOfDetail;
      public float noiseScale;
@@ -109,7 +111,7 @@ public class MapGen : MonoBehaviour
 
     MapData GenerateMapData(Vector2 center)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapSize, mapSize, seed, noiseScale, octaves, persistance, lacunarity, center + offSet);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapSize, mapSize, seed, noiseScale, octaves, persistance, lacunarity, center + offSet, normalizeMode);
 
         Color[] colorMap = new Color[mapSize * mapSize];
         for (int y = 0; y < mapSize; y++)
@@ -119,9 +121,12 @@ public class MapGen : MonoBehaviour
                 float currentHeight = noiseMap[x, y];
                 for (int i = 0; i < terrain.Length; i++)
                 {
-                    if (currentHeight <= terrain [i].heightValue)
+                    if (currentHeight >= terrain [i].heightValue)
                     {
                         colorMap[y * mapSize + x] = terrain[i].color;
+                    }
+                    else
+                    {
                         break;
                     }
                 }

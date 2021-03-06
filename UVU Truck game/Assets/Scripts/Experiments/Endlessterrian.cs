@@ -5,9 +5,12 @@ using System.Collections.Generic;
 
 public class Endlessterrian : MonoBehaviour
 {
+    //Sebastian Lague
+    
     private const float viewerMoveThresholdChunkUpdate = 25f;
     private const float sqrViewerMoveThresholdChunkUpdate = viewerMoveThresholdChunkUpdate * viewerMoveThresholdChunkUpdate;
     
+    private const float scale = 5f;
     public static float maxViewDst;
     public LODInfo[] detailLevel;
     public Transform viewer;
@@ -20,7 +23,7 @@ public class Endlessterrian : MonoBehaviour
     private int chunkVisibleInViewDst;
 
     private Dictionary<Vector2, TerrainChunk> terrainChunksDictionary = new Dictionary<Vector2, TerrainChunk>();
-    List<TerrainChunk> _terrainChunksVisibleLast = new List<TerrainChunk>();
+    static List<TerrainChunk> _terrainChunksVisibleLast = new List<TerrainChunk>();
 
     void Start()
     {
@@ -33,7 +36,7 @@ public class Endlessterrian : MonoBehaviour
 
     void Update()
     {
-        viewerPosition = new Vector2(viewer.position.x, viewer.position.z);
+        viewerPosition = new Vector2(viewer.position.x, viewer.position.z) / scale;
         if ((viewerPositionOld - viewerPosition).sqrMagnitude > sqrViewerMoveThresholdChunkUpdate)
         {
             viewerPositionOld = viewerPosition;
@@ -62,10 +65,6 @@ public class Endlessterrian : MonoBehaviour
                 if (terrainChunksDictionary.ContainsKey(viewChunkCoord))
                 {
                     terrainChunksDictionary[viewChunkCoord].UpdateTerrainChunk();
-                    if (terrainChunksDictionary [viewChunkCoord].IsVisible())
-                    {
-                        _terrainChunksVisibleLast.Add(terrainChunksDictionary [viewChunkCoord]);
-                    }
                 }
                 else
                 {
@@ -104,9 +103,11 @@ public class Endlessterrian : MonoBehaviour
             meshFilter = meshObject.AddComponent<MeshFilter>();
             meshRenderer.material = material;
             
-            meshObject.transform.position = positionV3;
+            meshObject.transform.position = positionV3 * scale;
             // meshObject.transform.localScale = Vector3.one * size / 10f;
             meshObject.transform.parent = parent;
+            meshObject.transform.localScale = Vector3.one * scale;
+            
             SetVisible(false);
 
             lodMeshes = new LODMesh[detailLevel.Length];
@@ -170,6 +171,7 @@ public class Endlessterrian : MonoBehaviour
                             mesh.RequestMesh(mapData);
                         }
                     }
+                    _terrainChunksVisibleLast.Add(this);
                 }
                 SetVisible(visible);
             }

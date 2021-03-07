@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 public class MapGen : MonoBehaviour
 {
     //Sebastian Lague
-    public enum DrawMode {NoiseMap, ColorMap, Mesh};
+    public enum DrawMode {NoiseMap, ColorMap, Mesh, fallOffMap};
 
     public Noise.NormalizeMode normalizeMode;
 
@@ -18,23 +18,35 @@ public class MapGen : MonoBehaviour
     
     public const int mapSize = 241;
      [FormerlySerializedAs("levelOfDetail")] [Range(0,6)]
+     
      public int editorLevelOfDetail;
      public float noiseScale;
+     
     public int octaves;
     [Range(0,1)]
     public float persistance;
     public float lacunarity;
+    
     public int seed;
     public Vector2 offSet;
+
+    public bool fallMapOn;
+    
     public float meshHeightMult;
     public AnimationCurve meshHeightCurve;
     
     public bool autoUpdate;
 
     public TerrainType[] terrain;
+    private float[,] fallOffMap;
     
     Queue<MapThreadInfo<MapData>> mapDataThreadQueue = new Queue<MapThreadInfo<MapData>>();
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
+
+    private void Awake()
+    {
+        fallOffMap = FallOffGen.GenerateFallMap(mapSize);
+    }
 
     public void DrawMapEdit()
     {
@@ -53,6 +65,10 @@ public class MapGen : MonoBehaviour
             display.DrawMesh(
                 MeshGen.GenerateTerrainMesh(mapData.heightMap, meshHeightMult, meshHeightCurve, editorLevelOfDetail),
                 TextureGen.TextureFromColorMap(mapData.colorMap, mapSize, mapSize));
+        }
+        else if (drawMode== DrawMode.fallOffMap)
+        {
+            display.DrawTexture(TextureGen.TextureFromHeightMap(FallOffGen.GenerateFallMap(mapSize)));
         }
     }
 
@@ -118,6 +134,10 @@ public class MapGen : MonoBehaviour
         {
             for (int x = 0; x < mapSize; x++)
             {
+                if (fallMapOn)
+                {
+                    noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - fallOffMap[x, y]);
+                }
                 float currentHeight = noiseMap[x, y];
                 for (int i = 0; i < terrain.Length; i++)
                 {
@@ -152,6 +172,8 @@ public class MapGen : MonoBehaviour
         {
             noiseScale = 0;
         }
+
+        fallOffMap = FallOffGen.GenerateFallMap(mapSize);
     }
 
     struct MapThreadInfo<T>

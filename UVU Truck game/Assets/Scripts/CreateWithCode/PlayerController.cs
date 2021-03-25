@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 20f;
     private int playArea = 20;
+    public GameObject carrotPrefab;
 
     // public float turnSpeed = 5f;
 
@@ -32,6 +33,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, 30);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
 
     void FixedUpdate()
@@ -43,5 +49,10 @@ public class PlayerController : MonoBehaviour
         //turning movement through horizontal input
         // transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput);
         transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+    }
+
+    void Shoot()
+    {
+        Instantiate(carrotPrefab, transform.position, carrotPrefab.transform.rotation);
     }
 }

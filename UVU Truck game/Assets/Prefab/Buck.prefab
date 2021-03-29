@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5757875142156720303}
   - component: {fileID: 5757875141045425110}
   - component: {fileID: -2402940654488199748}
+  - component: {fileID: 5171069240987277372}
+  - component: {fileID: 1386333420}
   m_Layer: 0
   m_Name: Buck
   m_TagString: Untagged
@@ -88,6 +90,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletTimer: 1.5
+--- !u!65 &5171069240987277372
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757875142166158609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16864985, y: 0.4654307, z: 0.39897954}
+  m_Center: {x: -0.015406002, y: 0.23749256, z: 0.045248985}
+--- !u!114 &1386333420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757875142166158609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e7d4a4ead7eb4488b1347da3c1ca63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5757875142166176927
 GameObject:
   m_ObjectHideFlags: 0

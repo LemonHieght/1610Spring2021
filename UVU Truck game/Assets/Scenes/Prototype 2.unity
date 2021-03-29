@@ -156,6 +156,8 @@ MonoBehaviour:
   - {fileID: 8472526829701516232, guid: 15243edc92849334a90c75ade43b3faf, type: 3}
   - {fileID: 7772804181093674632, guid: 25ce6f6f4f21ffc4dae75f4e644da108, type: 3}
   - {fileID: 5757875142166158609, guid: 2f21853e36082ef498c99154948ab209, type: 3}
+  startDelay: 2
+  spawnInterval: 1.5
 --- !u!4 &99428572
 Transform:
   m_ObjectHideFlags: 0
@@ -678,27 +680,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590138454}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2033752043 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100046, guid: 7b6675de545141649953fd8adec4561b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1070667596}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2033752044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033752043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 808899e19d82a14479cda2f329a38f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  carrotPrefab: {fileID: 5945400470265277569, guid: 0f26407544884cf45ab31afad546877d,
-    type: 3}
 --- !u!850595691 &2056088996
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -840,11 +821,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carrot
-      objectReference: {fileID: 0}
-    - target: {fileID: 5945400470265277569, guid: 0f26407544884cf45ab31afad546877d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5945400470265581087, guid: 0f26407544884cf45ab31afad546877d,
         type: 3}

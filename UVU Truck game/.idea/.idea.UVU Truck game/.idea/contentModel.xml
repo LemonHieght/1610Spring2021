@@ -36,6 +36,7 @@
             <e p="VarAndFun.cs" t="Include" />
           </e>
           <e p="CreateWithCode" t="Include">
+            <e p="CollsionDetection.cs" t="Include" />
             <e p="FollowPlayer.cs" t="Include" />
             <e p="ObjectMove.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />

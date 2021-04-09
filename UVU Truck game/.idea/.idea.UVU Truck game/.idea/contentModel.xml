@@ -25,6 +25,9 @@
         <e p="Course Library" t="Include">
           <e p="_Source_Files" t="Include">
             <e p="_LICENSE.txt" t="Include" />
+            <e p="Materials" t="Include">
+              <e p="UnlitVertexColour_Alpha.shader" t="Include" />
+            </e>
           </e>
         </e>
         <e p="Scripts" t="Include">
@@ -47,8 +50,10 @@
           <e p="CreateWithCode" t="Include">
             <e p="CollsionDetection.cs" t="Include" />
             <e p="FollowPlayer.cs" t="Include" />
+            <e p="MoveLeft.cs" t="Include" />
             <e p="ObjectMove.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerJump.cs" t="Include" />
             <e p="Projectile.cs" t="Include" />
             <e p="SpawnManager.cs" t="Include" />
           </e>

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = System.Random;
 
-public class MoveLeft : MonoBehaviour
+public class Background : MonoBehaviour
 {
-    private float speed = 20f;
-    private void Start()
+    private float speed = 10f;
+    // Start is called before the first frame update
+    void Start()
     {
         
     }

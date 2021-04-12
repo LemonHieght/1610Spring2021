@@ -7,6 +7,7 @@ using Random = System.Random;
 public class MoveLeft : MonoBehaviour
 {
     private float speed = 20f;
+    private float leftBoarder = -15;
     private void Start()
     {
         
@@ -16,5 +17,9 @@ public class MoveLeft : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left * Time.deltaTime * speed);
+        if (transform.position.x < leftBoarder)
+        {
+            Destroy(gameObject);
+        }
     }
 }

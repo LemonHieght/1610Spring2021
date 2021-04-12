@@ -55,6 +55,7 @@
             <e p="MovingBackground.cs" t="Include" />
             <e p="ObjectMove.cs" t="Include" />
             <e p="ObjectSpawner.cs" t="Include" />
+            <e p="PlayerAnimator.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerJump.cs" t="Include" />
             <e p="Projectile.cs" t="Include" />

@@ -47,6 +47,6 @@ public class PlayerJump : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Game Over");
-        
+        gameObject.SetActive(false);
     }
 }

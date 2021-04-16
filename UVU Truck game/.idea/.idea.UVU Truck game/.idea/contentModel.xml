@@ -72,6 +72,7 @@
             <e p="Skill.cs" t="Include" />
             <e p="SkillButton.cs" t="Include" />
             <e p="TextureGen.cs" t="Include" />
+            <e p="Veiwer.cs" t="Include" />
           </e>
         </e>
       </e>

@@ -10,11 +10,15 @@ public class PlayerJump : MonoBehaviour
     public float gravityMod;
     public bool isGrounded = true;
     bool gameOver = false;
-
+    private Animator playerAni;
+    public ParticleSystem death;
+    public GameObject playerModel;
+    
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
         Physics.gravity *= gravityMod;
+        playerAni = GetComponent<Animator>();
     }
 
     private void Update()
@@ -23,7 +27,7 @@ public class PlayerJump : MonoBehaviour
         {
             rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
-
+            playerAni.SetTrigger("Jump_trig");
         }
 
         if (gameOver == true)
@@ -47,6 +51,7 @@ public class PlayerJump : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Game Over");
+        Instantiate(death, playerModel.transform.position, playerModel.transform.rotation);
         gameObject.SetActive(false);
     }
 }

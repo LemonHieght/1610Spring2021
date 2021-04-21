@@ -7,6 +7,9 @@ public class PlayerAnimator : MonoBehaviour
     private Animator playerAnim;
 
     private PlayerJump playerControl;
+
+    private static readonly int JumpTrig = Animator.StringToHash("Jump_trig");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,9 @@ public class PlayerAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerControl.isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerAnim.SetTrigger("Jump_trig");
+            playerAnim.SetTrigger(JumpTrig);
         }
     }
 }

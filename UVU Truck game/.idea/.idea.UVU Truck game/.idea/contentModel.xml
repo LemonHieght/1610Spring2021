@@ -61,15 +61,18 @@
           <e p="CreateWithCode" t="Include">
             <e p="Background.cs" t="Include" />
             <e p="CollsionDetection.cs" t="Include" />
+            <e p="Enemy.cs" t="Include" />
             <e p="FollowPlayer.cs" t="Include" />
             <e p="MoveLeft.cs" t="Include" />
             <e p="MovingBackground.cs" t="Include" />
             <e p="ObjectMove.cs" t="Include" />
             <e p="ObjectSpawner.cs" t="Include" />
+            <e p="Player4.cs" t="Include" />
             <e p="PlayerAnimator.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerJump.cs" t="Include" />
             <e p="Projectile.cs" t="Include" />
+            <e p="RotateCamera.cs" t="Include" />
             <e p="SpawnManager.cs" t="Include" />
           </e>
           <e p="Experiments" t="Include">

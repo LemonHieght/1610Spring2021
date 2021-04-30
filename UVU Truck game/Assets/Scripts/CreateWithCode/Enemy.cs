@@ -17,8 +17,9 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rigid.AddForce((player.transform.position - transform.position).normalized *speed);
+        Vector3 lookDirect = (player.transform.position - transform.position).normalized;
+        rigid.AddForce(lookDirect * speed);
     }
 }

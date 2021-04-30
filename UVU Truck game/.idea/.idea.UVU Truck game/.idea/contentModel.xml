@@ -73,6 +73,7 @@
             <e p="PlayerJump.cs" t="Include" />
             <e p="Projectile.cs" t="Include" />
             <e p="RotateCamera.cs" t="Include" />
+            <e p="Spawn.cs" t="Include" />
             <e p="SpawnManager.cs" t="Include" />
           </e>
           <e p="Experiments" t="Include">

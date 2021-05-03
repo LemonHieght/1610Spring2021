@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,15 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
     void FixedUpdate()
     {
         Vector3 lookDirect = (player.transform.position - transform.position).normalized;

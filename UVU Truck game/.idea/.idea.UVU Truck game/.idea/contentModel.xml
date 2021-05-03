@@ -33,6 +33,14 @@
             <e p="SpawnerCH.cs" t="Include" />
           </e>
         </e>
+        <e p="Challenge 4" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="EnemyX.cs" t="Include" />
+            <e p="PlayerX.cs" t="Include" />
+            <e p="RotateCameraX.cs" t="Include" />
+            <e p="SpawnX.cs" t="Include" />
+          </e>
+        </e>
         <e p="Course Library" t="Include">
           <e p="_Source_Files" t="Include">
             <e p="_LICENSE.txt" t="Include" />

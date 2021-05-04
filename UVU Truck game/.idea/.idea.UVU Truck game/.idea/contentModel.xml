@@ -119,6 +119,8 @@
             <e p="Target.cs" t="Include" />
             <e p="Trigger.cs" t="Include" />
           </e>
+          <e p="DestroyOutOfBounds.cs" t="Include" />
+          <e p="DetectCollisions.cs" t="Include" />
           <e p="Experiments" t="Include">
             <e p="Endlessterrian.cs" t="Include" />
             <e p="FallOffGen.cs" t="Include" />
@@ -135,6 +137,8 @@
             <e p="TextureGen.cs" t="Include" />
             <e p="Veiwer.cs" t="Include" />
           </e>
+          <e p="ObjectPooler.cs" t="Include" />
+          <e p="PoolController.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Resources" t="Include">

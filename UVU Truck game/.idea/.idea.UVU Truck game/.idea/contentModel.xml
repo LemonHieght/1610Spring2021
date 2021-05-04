@@ -47,6 +47,29 @@
             <e p="Materials" t="Include">
               <e p="UnlitVertexColour_Alpha.shader" t="Include" />
             </e>
+            <e p="Scripts" t="Include">
+              <e p="DestroyAfterDelay.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Fonts" t="Include">
+            <e p="Baloo_Chettan" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
+            <e p="Exo_2" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
+            <e p="Indie_Flower" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
+            <e p="Margarine" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
+            <e p="Oswald" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
+            <e p="Roboto_Condensed" t="Include">
+              <e p="LICENSE.txt" t="Include" />
+            </e>
           </e>
         </e>
         <e p="Scripts" t="Include">
@@ -69,8 +92,10 @@
           <e p="CreateWithCode" t="Include">
             <e p="Background.cs" t="Include" />
             <e p="CollsionDetection.cs" t="Include" />
+            <e p="Difficulty.cs" t="Include" />
             <e p="Enemy.cs" t="Include" />
             <e p="FollowPlayer.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
             <e p="MoveLeft.cs" t="Include" />
             <e p="MovingBackground.cs" t="Include" />
             <e p="ObjectMove.cs" t="Include" />
@@ -83,12 +108,14 @@
             <e p="RotateCamera.cs" t="Include" />
             <e p="Spawn.cs" t="Include" />
             <e p="SpawnManager.cs" t="Include" />
+            <e p="Target.cs" t="Include" />
             <e p="Trigger.cs" t="Include" />
           </e>
           <e p="Experiments" t="Include">
             <e p="Endlessterrian.cs" t="Include" />
             <e p="FallOffGen.cs" t="Include" />
             <e p="FloatScript.cs" t="Include" />
+            <e p="IntData.cs" t="Include" />
             <e p="MapDisplay.cs" t="Include" />
             <e p="MapGen.cs" t="Include" />
             <e p="MapGenEditor.cs" t="Include" />
@@ -96,6 +123,7 @@
             <e p="Noise.cs" t="Include" />
             <e p="Skill.cs" t="Include" />
             <e p="SkillButton.cs" t="Include" />
+            <e p="TextBehavior.cs" t="Include" />
             <e p="TextureGen.cs" t="Include" />
             <e p="Veiwer.cs" t="Include" />
           </e>
